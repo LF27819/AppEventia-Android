@@ -1,6 +1,7 @@
 package com.svalero.appeventia.activity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.appeventia.R;
 import com.svalero.appeventia.adapter.EventoAdapter;
+import com.svalero.appeventia.api.EventoApiInterface;
+import com.svalero.appeventia.api.RetrofitClient;
 import com.svalero.appeventia.model.Evento;
-import com.svalero.appeventia.model.Recinto;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EventoListActivity extends AppCompatActivity {
 
@@ -32,44 +38,40 @@ public class EventoListActivity extends AppCompatActivity {
         eventoAdapter = new EventoAdapter(eventos);
         eventosRecyclerView.setAdapter(eventoAdapter);
 
-        cargarEventosDePrueba();
+        cargarEventos();
     }
 
-    private void cargarEventosDePrueba() {
-        Recinto recinto = new Recinto();
-        recinto.setNombre("Auditorio de Zaragoza");
+    private void cargarEventos() {
+        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
 
-        Evento evento1 = new Evento(
-                "Concierto de rock",
-                "Evento musical en directo",
-                "2026-06-10",
-                "21:00",
-                25.50f,
-                500,
-                120,
-                false,
-                true,
-                "Música"
-        );
-        evento1.setRecinto(recinto);
+        Call<List<Evento>> call = api.getEventos();
 
-        Evento evento2 = new Evento(
-                "Festival cultural",
-                "Festival con actividades culturales",
-                "2026-07-15",
-                "18:30",
-                12.00f,
-                300,
-                80,
-                false,
-                true,
-                "Cultura"
-        );
-        evento2.setRecinto(recinto);
+        call.enqueue(new Callback<List<Evento>>() {
+            @Override
+            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
 
-        eventos.add(evento1);
-        eventos.add(evento2);
+                if (response.isSuccessful() && response.body() != null) {
 
-        eventoAdapter.notifyDataSetChanged();
+                    eventos.clear();
+                    eventos.addAll(response.body());
+
+                    eventoAdapter.notifyDataSetChanged();
+
+                } else {
+
+                    Toast.makeText(EventoListActivity.this,
+                            "No se han podido cargar los eventos",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Evento>> call, Throwable t) {
+
+                Toast.makeText(EventoListActivity.this,
+                        "Error de conexión con la API",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
