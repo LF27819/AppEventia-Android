@@ -58,6 +58,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHold
             intent.putExtra("hora", evento.getHoraEvento());
             intent.putExtra("precio", evento.getPrecioEntrada());
             intent.putExtra("descripcion", evento.getDescripcion());
+            intent.putExtra("id", evento.getId());
 
             if (evento.getRecinto() != null) {
                 intent.putExtra("recinto", evento.getRecinto().getNombre());

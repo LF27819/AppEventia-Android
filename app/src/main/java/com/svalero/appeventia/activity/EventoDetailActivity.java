@@ -7,6 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.appeventia.R;
 
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.svalero.appeventia.database.AppDatabase;
+import com.svalero.appeventia.database.Favorito;
+import com.svalero.appeventia.utils.DatabaseClient;
+
+
 public class EventoDetailActivity extends AppCompatActivity {
 
     @Override
@@ -27,5 +35,48 @@ public class EventoDetailActivity extends AppCompatActivity {
         precioText.setText(getIntent().getFloatExtra("precio", 0) + " €");
         recintoText.setText(getIntent().getStringExtra("recinto"));
         descripcionText.setText(getIntent().getStringExtra("descripcion"));
+
+
+
+        Button addFavoriteButton = findViewById(R.id.addFavoriteButton);
+
+        addFavoriteButton.setOnClickListener(v -> {
+            long id = getIntent().getLongExtra("id", 0);
+            String nombre = getIntent().getStringExtra("nombre");
+            String categoria = getIntent().getStringExtra("categoria");
+            String fecha = getIntent().getStringExtra("fecha");
+            String hora = getIntent().getStringExtra("hora");
+            float precio = getIntent().getFloatExtra("precio", 0);
+            String recinto = getIntent().getStringExtra("recinto");
+            String descripcion = getIntent().getStringExtra("descripcion");
+
+            AppDatabase db = DatabaseClient.getInstance(EventoDetailActivity.this);
+
+            Favorito favoritoExistente = db.favoritoDao().findById(id);
+
+            if (favoritoExistente != null) {
+                Toast.makeText(EventoDetailActivity.this,
+                        "Este evento ya está en favoritos",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Favorito favorito = new Favorito(
+                    id,
+                    nombre,
+                    descripcion,
+                    fecha,
+                    hora,
+                    precio,
+                    categoria,
+                    recinto
+            );
+
+            db.favoritoDao().insert(favorito);
+
+            Toast.makeText(EventoDetailActivity.this,
+                    "Evento añadido a favoritos",
+                    Toast.LENGTH_SHORT).show();
+        });
     }
 }
