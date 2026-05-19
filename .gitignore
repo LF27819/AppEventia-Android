@@ -1,4 +1,3 @@
-*.iml
 .gradle
 /local.properties
 /.idea/caches
@@ -7,9 +6,45 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
+
+
+# Gradle
+.gradle/
+build/
+
+# Local configuration
 local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# APKs
+*.apk
+*.aab
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keystore
+*.jks
+*.keystore
+
+# Kotlin
+.kotlin/
+
+# Firebase
+google-services.json
