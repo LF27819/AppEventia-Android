@@ -34,6 +34,10 @@ public class EventoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_list);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         eventos = new ArrayList<>();
         eventosFiltrados = new ArrayList<>();
 
@@ -127,4 +131,11 @@ public class EventoListActivity extends AppCompatActivity {
 
         eventoAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
 }

@@ -16,9 +16,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button eventsButton = findViewById(R.id.eventsButton);
+        Button favoritesButton = findViewById(R.id.favoritesButton);
 
         eventsButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EventoListActivity.class);
+            startActivity(intent);
+        });
+
+        favoritesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
             startActivity(intent);
         });
     }

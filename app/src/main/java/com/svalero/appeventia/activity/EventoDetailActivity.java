@@ -22,6 +22,10 @@ public class EventoDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_detail);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         TextView nombreText = findViewById(R.id.detailNombreText);
         TextView categoriaText = findViewById(R.id.detailCategoriaText);
         TextView fechaText = findViewById(R.id.detailFechaText);
@@ -79,4 +83,11 @@ public class EventoDetailActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         });
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
 }
