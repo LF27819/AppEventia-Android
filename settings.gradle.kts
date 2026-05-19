@@ -7,6 +7,17 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+
+        maven {
+            url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+            credentials {
+                username = "mapbox"
+                password = providers.gradleProperty("MAPBOX_TOKEN").get()
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -16,8 +27,23 @@ plugins {
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
     repositories {
         google()
+
+        maven {
+            url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+
+            credentials {
+                username = "mapbox"
+                password = providers.gradleProperty("MAPBOX_TOKEN").get()
+            }
+        }
+
         mavenCentral()
     }
 }

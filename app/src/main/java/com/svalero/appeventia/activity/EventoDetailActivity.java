@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.svalero.appeventia.database.AppDatabase;
 import com.svalero.appeventia.database.Favorito;
+import com.svalero.appeventia.utils.CoordenadasRecintoUtil;
 import com.svalero.appeventia.utils.DatabaseClient;
+
+import android.content.Intent;
 
 
 public class EventoDetailActivity extends AppCompatActivity {
@@ -43,6 +46,7 @@ public class EventoDetailActivity extends AppCompatActivity {
 
 
         Button addFavoriteButton = findViewById(R.id.addFavoriteButton);
+        Button openMapButton = findViewById(R.id.openMapButton);
 
         addFavoriteButton.setOnClickListener(v -> {
             long id = getIntent().getLongExtra("id", 0);
@@ -82,6 +86,20 @@ public class EventoDetailActivity extends AppCompatActivity {
             Toast.makeText(EventoDetailActivity.this,
                     "Evento añadido a favoritos",
                     Toast.LENGTH_SHORT).show();
+        });
+
+        openMapButton.setOnClickListener(v -> {
+
+            Intent intent = new Intent(EventoDetailActivity.this, MapActivity.class);
+
+            String recinto = getIntent().getStringExtra("recinto");
+            double[] coordenadas = CoordenadasRecintoUtil.obtenerCoordenadas(recinto);
+
+            intent.putExtra("nombreRecinto", recinto);
+            intent.putExtra("latitud", coordenadas[0]);
+            intent.putExtra("longitud", coordenadas[1]);
+
+            startActivity(intent);
         });
     }
 

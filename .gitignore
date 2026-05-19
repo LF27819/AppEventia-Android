@@ -48,3 +48,6 @@ Thumbs.db
 
 # Firebase
 google-services.json
+
+gradle.properties
+local.properties

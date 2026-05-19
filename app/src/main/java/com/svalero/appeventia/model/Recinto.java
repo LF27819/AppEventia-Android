@@ -6,6 +6,8 @@ public class Recinto {
     private String nombre;
     private String direccion;
     private String ciudad;
+    private double latitud;
+    private double longitud;
 
     public Recinto() {
     }
@@ -37,4 +39,10 @@ public class Recinto {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+    public double getLatitud() { return latitud; }
+    public double getLongitud() { return longitud; }
+
+    public void setLatitud(double latitud) { this.latitud = latitud; }
+    public void setLongitud(double longitud) { this.longitud = longitud; }
 }
