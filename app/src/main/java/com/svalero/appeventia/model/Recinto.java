@@ -25,4 +25,16 @@ public class Recinto {
     public String getCiudad() {
         return ciudad;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
 }
