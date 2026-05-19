@@ -20,6 +20,7 @@ public class DatabaseClient {
                             "eventia-db-app"
                     )
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
 

@@ -50,6 +50,22 @@
             android:text="Eliminar"
             android:layout_marginTop="12dp"/>
 
+        <TextView
+            android:id="@+id/comentarioText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sin comentarios"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/editCommentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar comentario"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

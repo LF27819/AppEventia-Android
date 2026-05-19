@@ -18,6 +18,9 @@ import com.svalero.appeventia.utils.DatabaseClient;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.widget.EditText;
+
 public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.FavoritoHolder> {
 
     private final List<Favorito> favoritos;
@@ -62,6 +65,36 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
 
             Toast.makeText(context, "Favorito eliminado", Toast.LENGTH_SHORT).show();
         });
+
+        if (favorito.getComentario() == null || favorito.getComentario().isEmpty()) {
+            holder.comentarioText.setText("Sin comentarios");
+        } else {
+            holder.comentarioText.setText(favorito.getComentario());
+        }
+
+        holder.editCommentButton.setOnClickListener(v -> {
+            EditText input = new EditText(context);
+            input.setHint("Escribe un comentario");
+            input.setText(favorito.getComentario());
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Editar comentario")
+                    .setView(input)
+                    .setPositiveButton("Guardar", (dialog, which) -> {
+                        String comentario = input.getText().toString();
+
+                        favorito.setComentario(comentario);
+
+                        AppDatabase db = DatabaseClient.getInstance(context);
+                        db.favoritoDao().update(favorito);
+
+                        notifyItemChanged(holder.getAdapterPosition());
+
+                        Toast.makeText(context, "Comentario actualizado", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+        });
     }
 
     @Override
@@ -75,6 +108,8 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
         TextView favoritoCategoriaText;
         TextView favoritoFechaText;
         Button deleteFavoriteButton;
+        Button editCommentButton;
+        TextView comentarioText;
 
         public FavoritoHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +118,8 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
             favoritoCategoriaText = itemView.findViewById(R.id.favoritoCategoriaText);
             favoritoFechaText = itemView.findViewById(R.id.favoritoFechaText);
             deleteFavoriteButton = itemView.findViewById(R.id.deleteFavoriteButton);
+            editCommentButton = itemView.findViewById(R.id.editCommentButton);
+            comentarioText = itemView.findViewById(R.id.comentarioText);
         }
     }
 }

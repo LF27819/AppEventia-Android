@@ -16,12 +16,13 @@ public class Favorito {
     private float precioEntrada;
     private String categoria;
     private String recinto;
+    private String comentario;
 
     public Favorito() {
     }
 
     public Favorito(long id, String nombre, String descripcion, String fechaEvento,
-                    String horaEvento, float precioEntrada, String categoria, String recinto) {
+                    String horaEvento, float precioEntrada, String categoria, String recinto, String comentario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -30,6 +31,7 @@ public class Favorito {
         this.precioEntrada = precioEntrada;
         this.categoria = categoria;
         this.recinto = recinto;
+        this.comentario = comentario;
     }
 
     public long getId() { return id; }
@@ -49,4 +51,8 @@ public class Favorito {
     public void setPrecioEntrada(float precioEntrada) { this.precioEntrada = precioEntrada; }
     public void setCategoria(String categoria) { this.categoria = categoria; }
     public void setRecinto(String recinto) { this.recinto = recinto; }
+    public String getComentario() { return comentario; }
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 }

@@ -73,7 +73,8 @@ public class EventoDetailActivity extends AppCompatActivity {
                     hora,
                     precio,
                     categoria,
-                    recinto
+                    recinto,
+                    ""
             );
 
             db.favoritoDao().insert(favorito);
