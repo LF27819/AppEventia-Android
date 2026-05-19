@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEventia">
         <activity
+            android:name=".activity.EventoDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.EventoListActivity"
             android:exported="false" />
         <activity

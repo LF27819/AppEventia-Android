@@ -13,6 +13,10 @@ import com.svalero.appeventia.model.Evento;
 
 import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
+import com.svalero.appeventia.activity.EventoDetailActivity;
+
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHolder> {
 
     private final List<Evento> eventos;
@@ -43,6 +47,26 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHold
         } else {
             holder.eventoRecintoText.setText("Recinto no disponible");
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            Context context = v.getContext();
+
+            Intent intent = new Intent(context, EventoDetailActivity.class);
+            intent.putExtra("nombre", evento.getNombre());
+            intent.putExtra("categoria", evento.getCategoria());
+            intent.putExtra("fecha", evento.getFechaEvento());
+            intent.putExtra("hora", evento.getHoraEvento());
+            intent.putExtra("precio", evento.getPrecioEntrada());
+            intent.putExtra("descripcion", evento.getDescripcion());
+
+            if (evento.getRecinto() != null) {
+                intent.putExtra("recinto", evento.getRecinto().getNombre());
+            } else {
+                intent.putExtra("recinto", "Recinto no disponible");
+            }
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
