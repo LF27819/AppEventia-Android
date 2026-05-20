@@ -28,4 +28,7 @@
     <string name="toast_favorite_exists">This event is already in favorites</string>
     <string name="toast_favorite_deleted">Favorite deleted</string>
 
+    <string name="enable_notifications">Enable notifications</string>
+    <string name="save_changes">Save changes</string>
+
 </resources>

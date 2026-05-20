@@ -27,4 +27,8 @@
     <string name="toast_favorite_added">Evento añadido a favoritos</string>
     <string name="toast_favorite_exists">Este evento ya está en favoritos</string>
     <string name="toast_favorite_deleted">Favorito eliminado</string>
+
+    <string name="enable_notifications">Activar notificaciones</string>
+    <string name="save_changes">Guardar cambios</string>
+
 </resources>
