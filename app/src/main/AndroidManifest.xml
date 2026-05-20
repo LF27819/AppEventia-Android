@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AppEventia"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.ReservaListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ArtistaListActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ProfileActivity"
             android:exported="false" />
         <activity

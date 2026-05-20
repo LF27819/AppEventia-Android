@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Button eventsButton = findViewById(R.id.eventsButton);
         Button favoritesButton = findViewById(R.id.favoritesButton);
         Button profileButton = findViewById(R.id.profileButton);
+        Button artistsButton = findViewById(R.id.artistsButton);
 
 
         eventsButton.setOnClickListener(v -> {
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
+        artistsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ArtistaListActivity.class);
             startActivity(intent);
         });
     }

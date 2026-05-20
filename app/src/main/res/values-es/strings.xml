@@ -31,4 +31,7 @@
     <string name="enable_notifications">Activar notificaciones</string>
     <string name="save_changes">Guardar cambios</string>
 
+    <string name="button_artists">Artistas</string>
+    <string name="artists_title">Artistas</string>
+
 </resources>

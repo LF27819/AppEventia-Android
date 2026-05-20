@@ -40,10 +40,10 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/mapButton"
+        android:id="@+id/artistsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_map"
+        android:text="@string/button_artists"
         android:layout_marginBottom="16dp"/>
 
     <Button
