@@ -1,24 +1,21 @@
 package com.svalero.appeventia.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.svalero.appeventia.R;
-
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.svalero.appeventia.database.AppDatabase;
-import com.svalero.appeventia.database.Favorito;
+import com.svalero.appeventia.contract.EventoDetailContract;
+import com.svalero.appeventia.presenter.EventoDetailPresenter;
 import com.svalero.appeventia.utils.CoordenadasRecintoUtil;
-import com.svalero.appeventia.utils.DatabaseClient;
 
-import android.content.Intent;
+public class EventoDetailActivity extends AppCompatActivity implements EventoDetailContract.View {
 
-
-public class EventoDetailActivity extends AppCompatActivity {
+    private EventoDetailContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +25,8 @@ public class EventoDetailActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        presenter = new EventoDetailPresenter(this, this);
 
         TextView nombreText = findViewById(R.id.detailNombreText);
         TextView categoriaText = findViewById(R.id.detailCategoriaText);
@@ -43,8 +42,6 @@ public class EventoDetailActivity extends AppCompatActivity {
         recintoText.setText(getIntent().getStringExtra("recinto"));
         descripcionText.setText(getIntent().getStringExtra("descripcion"));
 
-
-
         Button addFavoriteButton = findViewById(R.id.addFavoriteButton);
         Button openMapButton = findViewById(R.id.openMapButton);
 
@@ -58,18 +55,7 @@ public class EventoDetailActivity extends AppCompatActivity {
             String recinto = getIntent().getStringExtra("recinto");
             String descripcion = getIntent().getStringExtra("descripcion");
 
-            AppDatabase db = DatabaseClient.getInstance(EventoDetailActivity.this);
-
-            Favorito favoritoExistente = db.favoritoDao().findById(id);
-
-            if (favoritoExistente != null) {
-                Toast.makeText(EventoDetailActivity.this,
-                        "Este evento ya está en favoritos",
-                        Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Favorito favorito = new Favorito(
+            presenter.guardarFavorito(
                     id,
                     nombre,
                     descripcion,
@@ -77,19 +63,11 @@ public class EventoDetailActivity extends AppCompatActivity {
                     hora,
                     precio,
                     categoria,
-                    recinto,
-                    ""
+                    recinto
             );
-
-            db.favoritoDao().insert(favorito);
-
-            Toast.makeText(EventoDetailActivity.this,
-                    "Evento añadido a favoritos",
-                    Toast.LENGTH_SHORT).show();
         });
 
         openMapButton.setOnClickListener(v -> {
-
             Intent intent = new Intent(EventoDetailActivity.this, MapActivity.class);
 
             String recinto = getIntent().getStringExtra("recinto");
@@ -104,9 +82,13 @@ public class EventoDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    public void mostrarMensaje(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
-
 }
