@@ -34,4 +34,7 @@
     <string name="button_artists">Artistas</string>
     <string name="artists_title">Artistas</string>
 
+    <string name="button_reservations">Reservas</string>
+    <string name="reservations_title">Reservas</string>
+
 </resources>

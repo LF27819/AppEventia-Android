@@ -2,6 +2,7 @@ package com.svalero.appeventia.api;
 
 import com.svalero.appeventia.model.Evento;
 import com.svalero.appeventia.model.Artista;
+import com.svalero.appeventia.model.Reserva;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface EventoApiInterface {
 
     @GET("artistas")
     Call<List<Artista>> getArtistas();
+
+    @GET("reservas")
+    Call<List<Reserva>> getReservas();
 }
