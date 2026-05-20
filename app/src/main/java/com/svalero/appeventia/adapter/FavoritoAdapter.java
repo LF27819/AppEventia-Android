@@ -22,12 +22,18 @@ import java.util.List;
 
 public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.FavoritoHolder> {
 
+    public interface OnFavoritoClickListener {
+        void onDeleteFavorito(Favorito favorito);
+    }
+
     private final List<Favorito> favoritos;
     private final Context context;
+    private final OnFavoritoClickListener listener;
 
-    public FavoritoAdapter(List<Favorito> favoritos, Context context) {
+    public FavoritoAdapter(List<Favorito> favoritos, Context context, OnFavoritoClickListener listener) {
         this.favoritos = favoritos;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -55,14 +61,7 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
             }
 
             Favorito favoritoEliminar = favoritos.get(adapterPosition);
-
-            AppDatabase db = DatabaseClient.getInstance(context);
-            db.favoritoDao().delete(favoritoEliminar);
-
-            favoritos.remove(adapterPosition);
-            notifyItemRemoved(adapterPosition);
-
-            Toast.makeText(context, R.string.toast_favorite_deleted, Toast.LENGTH_SHORT).show();
+            listener.onDeleteFavorito(favoritoEliminar);
         });
 
         if (favorito.getComentario() == null || favorito.getComentario().isEmpty()) {
