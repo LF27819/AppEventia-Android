@@ -2,7 +2,7 @@
     <string name="app_name">AppEventia</string>
 
     <string name="main_subtitle">Tu app de eventos</string>
-    <string name="button_events">Ver eventos</string>
+    <string name="button_events">Eventos</string>
     <string name="button_favorites">Favoritos</string>
     <string name="button_map">Mapa</string>
     <string name="button_profile">Perfil</string>

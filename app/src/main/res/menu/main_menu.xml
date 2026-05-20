@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_events"
+        android:title="@string/button_events" />
+
+    <item
+        android:id="@+id/menu_artists"
+        android:title="@string/button_artists" />
+
+    <item
+        android:id="@+id/menu_reservations"
+        android:title="@string/button_reservations" />
+
+    <item
+        android:id="@+id/menu_favorites"
+        android:title="@string/button_favorites" />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/button_profile" />
+
+</menu>
