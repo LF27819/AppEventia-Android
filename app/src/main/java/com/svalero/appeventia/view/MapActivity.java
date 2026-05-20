@@ -1,4 +1,4 @@
-package com.svalero.appeventia.activity;
+package com.svalero.appeventia.view;
 
 import android.os.Bundle;
 

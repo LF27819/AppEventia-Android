@@ -15,7 +15,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
-import com.svalero.appeventia.activity.EventoDetailActivity;
+import com.svalero.appeventia.view.EventoDetailActivity;
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHolder> {
 

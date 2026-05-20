@@ -15,19 +15,19 @@
         android:theme="@style/Theme.AppEventia"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.MapActivity"
+            android:name=".view.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FavoritesActivity"
+            android:name=".view.FavoritesActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.EventoDetailActivity"
+            android:name=".view.EventoDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.EventoListActivity"
+            android:name=".view.EventoListActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
