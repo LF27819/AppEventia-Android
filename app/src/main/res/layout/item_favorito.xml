@@ -47,14 +47,14 @@
             android:id="@+id/deleteFavoriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar"
+            android:text="@string/delete"
             android:layout_marginTop="12dp"/>
 
         <TextView
             android:id="@+id/comentarioText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sin comentarios"
+            android:text="@string/no_comments"
             android:textSize="14sp"
             android:textColor="#666666"
             android:layout_marginTop="10dp"/>
@@ -63,7 +63,7 @@
             android:id="@+id/editCommentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar comentario"
+            android:text="@string/edit_comment"
             android:layout_marginTop="8dp"/>
 
     </LinearLayout>

@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">AppEventia</string>
+
+    <string name="main_subtitle">Your event app</string>
+    <string name="button_events">View events</string>
+    <string name="button_favorites">Favorites</string>
+    <string name="button_map">Map</string>
+    <string name="button_profile">Profile</string>
+
+    <string name="events_title">Events</string>
+    <string name="search_events">Search events</string>
+
+    <string name="favorites_title">Favorites</string>
+    <string name="delete">Delete</string>
+    <string name="edit_comment">Edit comment</string>
+    <string name="no_comments">No comments</string>
+
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="view_venue_on_map">View venue on map</string>
+    <string name="description">Description</string>
+
+    <string name="dialog_edit_comment">Edit comment</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_comment_hint">Write a comment</string>
+    <string name="toast_comment_updated">Comment updated</string>
+    <string name="toast_favorite_added">Event added to favorites</string>
+    <string name="toast_favorite_exists">This event is already in favorites</string>
+    <string name="toast_favorite_deleted">Favorite deleted</string>
+
 </resources>

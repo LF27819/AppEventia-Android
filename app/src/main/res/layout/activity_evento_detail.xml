@@ -75,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Ver ubicación del recinto" />
+                    android:text="@string/view_venue_on_map" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descripción"
+                    android:text="@string/description"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#212121"
@@ -113,7 +113,7 @@
                     android:id="@+id/addFavoriteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Añadir a favoritos"
+                    android:text="@string/add_to_favorites"
                     android:layout_marginTop="20dp"/>
 
             </LinearLayout>

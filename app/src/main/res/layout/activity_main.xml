@@ -6,8 +6,7 @@
     android:orientation="vertical"
     android:paddingTop="100dp"
     android:paddingBottom="24dp"
-    android:paddingHorizontal="24dp"
-    >
+    android:paddingHorizontal="24dp">
 
     <TextView
         android:id="@+id/titleText"
@@ -22,7 +21,7 @@
         android:id="@+id/subtitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tu aplicación de eventos"
+        android:text="@string/main_subtitle"
         android:textSize="18sp"
         android:layout_marginBottom="32dp"/>
 
@@ -30,27 +29,27 @@
         android:id="@+id/eventsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver eventos"
+        android:text="@string/button_events"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/favoritesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favoritos"
+        android:text="@string/button_favorites"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/mapButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mapa"
+        android:text="@string/button_map"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/profileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Perfil"/>
+        android:text="@string/button_profile"/>
 
 </LinearLayout>

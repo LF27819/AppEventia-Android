@@ -15,7 +15,7 @@ pluginManagement {
             }
             credentials {
                 username = "mapbox"
-                password = providers.gradleProperty("MAPBOX_TOKEN").get()
+                password = System.getenv("MAPBOX_TOKEN") ?: ""
             }
         }
         mavenCentral()
@@ -40,7 +40,7 @@ dependencyResolutionManagement {
 
             credentials {
                 username = "mapbox"
-                password = providers.gradleProperty("MAPBOX_TOKEN").get()
+                password = System.getenv("MAPBOX_TOKEN") ?: ""
             }
         }
 

@@ -1,10 +1,12 @@
 package com.svalero.appeventia.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +19,6 @@ import com.svalero.appeventia.database.Favorito;
 import com.svalero.appeventia.utils.DatabaseClient;
 
 import java.util.List;
-
-import android.app.AlertDialog;
-import android.widget.EditText;
 
 public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.FavoritoHolder> {
 
@@ -63,24 +62,24 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
             favoritos.remove(adapterPosition);
             notifyItemRemoved(adapterPosition);
 
-            Toast.makeText(context, "Favorito eliminado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.toast_favorite_deleted, Toast.LENGTH_SHORT).show();
         });
 
         if (favorito.getComentario() == null || favorito.getComentario().isEmpty()) {
-            holder.comentarioText.setText("Sin comentarios");
+            holder.comentarioText.setText(R.string.no_comments);
         } else {
             holder.comentarioText.setText(favorito.getComentario());
         }
 
         holder.editCommentButton.setOnClickListener(v -> {
             EditText input = new EditText(context);
-            input.setHint("Escribe un comentario");
+            input.setHint(context.getString(R.string.dialog_comment_hint));
             input.setText(favorito.getComentario());
 
             new AlertDialog.Builder(context)
-                    .setTitle("Editar comentario")
+                    .setTitle(R.string.dialog_edit_comment)
                     .setView(input)
-                    .setPositiveButton("Guardar", (dialog, which) -> {
+                    .setPositiveButton(R.string.dialog_save, (dialog, which) -> {
                         String comentario = input.getText().toString();
 
                         favorito.setComentario(comentario);
@@ -90,9 +89,9 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
 
                         notifyItemChanged(holder.getAdapterPosition());
 
-                        Toast.makeText(context, "Comentario actualizado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.toast_comment_updated, Toast.LENGTH_SHORT).show();
                     })
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(R.string.dialog_cancel, null)
                     .show();
         });
     }
