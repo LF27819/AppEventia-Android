@@ -12,22 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.appeventia.R;
 import com.svalero.appeventia.adapter.EventoAdapter;
-import com.svalero.appeventia.api.EventoApiInterface;
-import com.svalero.appeventia.api.RetrofitClient;
+import com.svalero.appeventia.contract.EventoListContract;
 import com.svalero.appeventia.model.Evento;
+import com.svalero.appeventia.presenter.EventoListPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class EventoListActivity extends AppCompatActivity {
+public class EventoListActivity extends AppCompatActivity implements EventoListContract.View {
 
     private List<Evento> eventos;
-    private List<Evento> eventosFiltrados;
     private EventoAdapter eventoAdapter;
+    private EventoListContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +35,12 @@ public class EventoListActivity extends AppCompatActivity {
         }
 
         eventos = new ArrayList<>();
-        eventosFiltrados = new ArrayList<>();
+        presenter = new EventoListPresenter(this);
 
         RecyclerView eventosRecyclerView = findViewById(R.id.eventosRecyclerView);
         eventosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        eventoAdapter = new EventoAdapter(eventosFiltrados);
+        eventoAdapter = new EventoAdapter(eventos);
         eventosRecyclerView.setAdapter(eventoAdapter);
 
         EditText searchEditText = findViewById(R.id.searchEditText);
@@ -56,7 +52,7 @@ public class EventoListActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                filtrarEventos(text.toString());
+                presenter.filtrarEventos(text.toString());
             }
 
             @Override
@@ -64,72 +60,19 @@ public class EventoListActivity extends AppCompatActivity {
             }
         });
 
-        cargarEventos();
+        presenter.cargarEventos();
     }
 
-    private void cargarEventos() {
-        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
-
-        Call<List<Evento>> call = api.getEventos();
-
-        call.enqueue(new Callback<List<Evento>>() {
-            @Override
-            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
-
-                if (response.isSuccessful() && response.body() != null) {
-
-                    eventos.clear();
-                    eventos.addAll(response.body());
-
-                    eventosFiltrados.clear();
-                    eventosFiltrados.addAll(eventos);
-
-                    eventoAdapter.notifyDataSetChanged();
-
-                } else {
-
-                    Toast.makeText(EventoListActivity.this,
-                            "No se han podido cargar los eventos",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Evento>> call, Throwable t) {
-
-                Toast.makeText(EventoListActivity.this,
-                        "Error de conexión con la API",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void filtrarEventos(String texto) {
-        eventosFiltrados.clear();
-
-        if (texto == null || texto.trim().isEmpty()) {
-            eventosFiltrados.addAll(eventos);
-        } else {
-            String textoBusqueda = texto.toLowerCase().trim();
-
-            for (Evento evento : eventos) {
-                boolean coincideNombre = evento.getNombre() != null &&
-                        evento.getNombre().toLowerCase().contains(textoBusqueda);
-
-                boolean coincideCategoria = evento.getCategoria() != null &&
-                        evento.getCategoria().toLowerCase().contains(textoBusqueda);
-
-                boolean coincideRecinto = evento.getRecinto() != null &&
-                        evento.getRecinto().getNombre() != null &&
-                        evento.getRecinto().getNombre().toLowerCase().contains(textoBusqueda);
-
-                if (coincideNombre || coincideCategoria || coincideRecinto) {
-                    eventosFiltrados.add(evento);
-                }
-            }
-        }
-
+    @Override
+    public void mostrarEventos(List<Evento> nuevosEventos) {
+        eventos.clear();
+        eventos.addAll(nuevosEventos);
         eventoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void mostrarError(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -137,5 +80,4 @@ public class EventoListActivity extends AppCompatActivity {
         finish();
         return true;
     }
-
 }
