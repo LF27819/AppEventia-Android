@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="100dp"
+    android:paddingBottom="16dp"
+    android:paddingHorizontal="20dp"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/artistaFormTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Artist form"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="18dp"/>
+
+        <EditText
+            android:id="@+id/nombreArtisticoInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Artistic name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/nombreRealInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Real name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/generoMusicalInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Musical genre"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/fechaNacimientoInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Birth date yyyy-MM-dd"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/cacheInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Cache"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/eventosRealizadosInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Events performed"
+            android:inputType="number" />
+
+        <CheckBox
+            android:id="@+id/activoCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Active" />
+
+        <Button
+            android:id="@+id/guardarArtistaButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:text="Save artist" />
+
+    </LinearLayout>
+
+</ScrollView>

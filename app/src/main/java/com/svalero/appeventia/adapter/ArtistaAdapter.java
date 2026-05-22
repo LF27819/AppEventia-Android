@@ -3,6 +3,7 @@ package com.svalero.appeventia.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +16,17 @@ import java.util.List;
 
 public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaHolder> {
 
-    private final List<Artista> artistas;
+    public interface ArtistaListener {
+        void editarArtista(Artista artista);
+        void eliminarArtista(Artista artista);
+    }
 
-    public ArtistaAdapter(List<Artista> artistas) {
+    private final List<Artista> artistas;
+    private final ArtistaListener listener;
+
+    public ArtistaAdapter(List<Artista> artistas, ArtistaListener listener) {
         this.artistas = artistas;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,7 +43,16 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaH
         Artista artista = artistas.get(position);
 
         holder.artistaNombreText.setText(artista.getNombreArtistico());
-        holder.artistaGeneroText.setText(artista.getGeneroMusical());
+        holder.artistaNombreRealText.setText("Nombre real: " + artista.getNombreReal());
+        holder.artistaGeneroText.setText("Género: " + artista.getGeneroMusical());
+        holder.artistaFechaText.setText("Nacimiento: " + artista.getFechaNacimiento());
+        holder.artistaCacheText.setText("Caché: " + artista.getCache() + " €");
+        holder.artistaEventosText.setText("Eventos realizados: " + artista.getEventosRealizados());
+
+        holder.artistaActivoText.setText(artista.isActivo() ? "Activo" : "Inactivo");
+
+        holder.editArtistaButton.setOnClickListener(v -> listener.editarArtista(artista));
+        holder.deleteArtistaButton.setOnClickListener(v -> listener.eliminarArtista(artista));
     }
 
     @Override
@@ -46,13 +63,27 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaH
     public static class ArtistaHolder extends RecyclerView.ViewHolder {
 
         TextView artistaNombreText;
+        TextView artistaNombreRealText;
         TextView artistaGeneroText;
+        TextView artistaFechaText;
+        TextView artistaCacheText;
+        TextView artistaEventosText;
+        TextView artistaActivoText;
+        Button editArtistaButton;
+        Button deleteArtistaButton;
 
         public ArtistaHolder(@NonNull View itemView) {
             super(itemView);
 
             artistaNombreText = itemView.findViewById(R.id.artistaNombreText);
+            artistaNombreRealText = itemView.findViewById(R.id.artistaNombreRealText);
             artistaGeneroText = itemView.findViewById(R.id.artistaGeneroText);
+            artistaFechaText = itemView.findViewById(R.id.artistaFechaText);
+            artistaCacheText = itemView.findViewById(R.id.artistaCacheText);
+            artistaEventosText = itemView.findViewById(R.id.artistaEventosText);
+            artistaActivoText = itemView.findViewById(R.id.artistaActivoText);
+            editArtistaButton = itemView.findViewById(R.id.editArtistaButton);
+            deleteArtistaButton = itemView.findViewById(R.id.deleteArtistaButton);
         }
     }
 }

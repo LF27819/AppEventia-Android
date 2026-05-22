@@ -1,6 +1,8 @@
 package com.svalero.appeventia.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +36,43 @@ public class ArtistaListActivity extends AppCompatActivity implements ArtistaLis
         artistas = new ArrayList<>();
         presenter = new ArtistaListPresenter(this);
 
+        Button addArtistaButton = findViewById(R.id.addArtistaButton);
+
         RecyclerView artistasRecyclerView = findViewById(R.id.artistasRecyclerView);
         artistasRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        artistaAdapter = new ArtistaAdapter(artistas);
+        artistaAdapter = new ArtistaAdapter(artistas, new ArtistaAdapter.ArtistaListener() {
+            @Override
+            public void editarArtista(Artista artista) {
+                Intent intent = new Intent(ArtistaListActivity.this, ArtistaFormActivity.class);
+                intent.putExtra("id", artista.getId());
+                intent.putExtra("nombreArtistico", artista.getNombreArtistico());
+                intent.putExtra("nombreReal", artista.getNombreReal());
+                intent.putExtra("generoMusical", artista.getGeneroMusical());
+                intent.putExtra("fechaNacimiento", artista.getFechaNacimiento());
+                intent.putExtra("activo", artista.isActivo());
+                intent.putExtra("cache", artista.getCache());
+                intent.putExtra("eventosRealizados", artista.getEventosRealizados());
+                startActivity(intent);
+            }
+
+            @Override
+            public void eliminarArtista(Artista artista) {
+                presenter.eliminarArtista(artista.getId());
+            }
+        });
+
         artistasRecyclerView.setAdapter(artistaAdapter);
 
+        addArtistaButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ArtistaFormActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         presenter.cargarArtistas();
     }
 
@@ -48,6 +81,12 @@ public class ArtistaListActivity extends AppCompatActivity implements ArtistaLis
         artistas.clear();
         artistas.addAll(nuevosArtistas);
         artistaAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void artistaEliminado() {
+        Toast.makeText(this, "Artista eliminado", Toast.LENGTH_SHORT).show();
+        presenter.cargarArtistas();
     }
 
     @Override

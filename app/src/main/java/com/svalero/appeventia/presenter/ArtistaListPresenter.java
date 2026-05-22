@@ -23,9 +23,7 @@ public class ArtistaListPresenter implements ArtistaListContract.Presenter {
     public void cargarArtistas() {
         EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
 
-        Call<List<Artista>> call = api.getArtistas();
-
-        call.enqueue(new Callback<List<Artista>>() {
+        api.getArtistas().enqueue(new Callback<List<Artista>>() {
             @Override
             public void onResponse(Call<List<Artista>> call, Response<List<Artista>> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -37,6 +35,27 @@ public class ArtistaListPresenter implements ArtistaListContract.Presenter {
 
             @Override
             public void onFailure(Call<List<Artista>> call, Throwable t) {
+                view.mostrarError("Error de conexión con la API");
+            }
+        });
+    }
+
+    @Override
+    public void eliminarArtista(long id) {
+        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
+
+        api.deleteArtista(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    view.artistaEliminado();
+                } else {
+                    view.mostrarError("No se pudo eliminar el artista");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 view.mostrarError("Error de conexión con la API");
             }
         });
