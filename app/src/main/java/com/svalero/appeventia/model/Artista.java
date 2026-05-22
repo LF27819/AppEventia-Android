@@ -20,4 +20,9 @@ public class Artista {
     public String getGeneroMusical() {
         return generoMusical;
     }
+
+    @Override
+    public String toString() {
+        return nombreArtistico;
+    }
 }

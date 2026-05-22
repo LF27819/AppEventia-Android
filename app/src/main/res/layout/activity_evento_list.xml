@@ -25,6 +25,13 @@
         android:padding="12dp"
         android:layout_marginBottom="16dp"/>
 
+    <Button
+        android:id="@+id/addEventoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_event"
+        android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventosRecyclerView"
         android:layout_width="match_parent"

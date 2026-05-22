@@ -26,9 +26,7 @@ public class EventoListPresenter implements EventoListContract.Presenter {
     public void cargarEventos() {
         EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
 
-        Call<List<Evento>> call = api.getEventos();
-
-        call.enqueue(new Callback<List<Evento>>() {
+        api.getEventos().enqueue(new Callback<List<Evento>>() {
             @Override
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -74,5 +72,71 @@ public class EventoListPresenter implements EventoListContract.Presenter {
         }
 
         view.mostrarEventos(eventosFiltrados);
+    }
+
+    @Override
+    public void crearEvento(Evento evento) {
+        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
+
+        api.addEvento(evento).enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if (response.isSuccessful()) {
+                    view.mostrarMensaje("Evento creado correctamente");
+                    cargarEventos();
+                } else {
+                    view.mostrarError("No se ha podido crear el evento");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+                view.mostrarError("Error al crear evento");
+            }
+        });
+    }
+
+    @Override
+    public void editarEvento(long id, Evento evento) {
+        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
+
+        api.updateEvento(id, evento).enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if (response.isSuccessful()) {
+                    view.mostrarMensaje("Evento actualizado correctamente");
+                    cargarEventos();
+                } else {
+                    view.mostrarError("No se ha podido actualizar el evento");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+                view.mostrarError("Error al actualizar evento");
+            }
+        });
+    }
+
+    @Override
+    public void eliminarEvento(long id) {
+        EventoApiInterface api = RetrofitClient.getClient().create(EventoApiInterface.class);
+
+        api.deleteEvento(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    view.mostrarMensaje("Evento eliminado correctamente");
+                    cargarEventos();
+                } else {
+                    view.mostrarError("No se ha podido eliminar el evento");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                view.mostrarError("Error al eliminar evento");
+            }
+        });
     }
 }

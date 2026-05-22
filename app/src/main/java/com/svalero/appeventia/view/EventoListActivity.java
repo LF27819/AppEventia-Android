@@ -1,8 +1,10 @@
 package com.svalero.appeventia.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -40,10 +42,34 @@ public class EventoListActivity extends AppCompatActivity implements EventoListC
         RecyclerView eventosRecyclerView = findViewById(R.id.eventosRecyclerView);
         eventosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        eventoAdapter = new EventoAdapter(eventos);
+        eventoAdapter = new EventoAdapter(eventos, new EventoAdapter.OnEventoClickListener() {
+
+            @Override
+            public void onEditEvento(Evento evento) {
+
+                Intent intent = new Intent(EventoListActivity.this, EventoFormActivity.class);
+
+                intent.putExtra("id", evento.getId());
+                intent.putExtra("nombre", evento.getNombre());
+                intent.putExtra("descripcion", evento.getDescripcion());
+                intent.putExtra("fecha", evento.getFechaEvento());
+                intent.putExtra("hora", evento.getHoraEvento());
+                intent.putExtra("precio", evento.getPrecioEntrada());
+                intent.putExtra("categoria", evento.getCategoria());
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDeleteEvento(Evento evento) {
+                presenter.eliminarEvento(evento.getId());
+            }
+        });
+
         eventosRecyclerView.setAdapter(eventoAdapter);
 
         EditText searchEditText = findViewById(R.id.searchEditText);
+        Button addEventoButton = findViewById(R.id.addEventoButton);
 
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,6 +86,11 @@ public class EventoListActivity extends AppCompatActivity implements EventoListC
             }
         });
 
+        addEventoButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EventoListActivity.this, EventoFormActivity.class);
+            startActivity(intent);
+        });
+
         presenter.cargarEventos();
     }
 
@@ -72,6 +103,11 @@ public class EventoListActivity extends AppCompatActivity implements EventoListC
 
     @Override
     public void mostrarError(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void mostrarMensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 

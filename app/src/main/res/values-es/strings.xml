@@ -37,4 +37,22 @@
     <string name="button_reservations">Reservas</string>
     <string name="reservations_title">Reservas</string>
 
+    <string name="edit_event">Editar evento</string>
+    <string name="create_event">Crear evento</string>
+
+    <string name="event_form_title">Formulario evento</string>
+    <string name="event_name_hint">Nombre</string>
+    <string name="event_description_hint">Descripción</string>
+    <string name="event_date_hint">Fecha: 2026-06-01</string>
+    <string name="event_time_hint">Hora: 20:00</string>
+    <string name="event_price_hint">Precio</string>
+    <string name="event_capacity_hint">Aforo máximo</string>
+    <string name="event_available_tickets_hint">Entradas disponibles</string>
+    <string name="event_category_hint">Categoría</string>
+    <string name="artist_label">Artista</string>
+    <string name="venue_label">Recinto</string>
+    <string name="event_in_person">Presencial</string>
+    <string name="event_cancelled">Cancelado</string>
+    <string name="save_event">Guardar evento</string>
+
 </resources>

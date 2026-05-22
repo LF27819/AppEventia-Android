@@ -1,8 +1,11 @@
 package com.svalero.appeventia.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,19 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svalero.appeventia.R;
 import com.svalero.appeventia.model.Evento;
+import com.svalero.appeventia.view.EventoDetailActivity;
 
 import java.util.List;
 
-import android.content.Context;
-import android.content.Intent;
-import com.svalero.appeventia.view.EventoDetailActivity;
-
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHolder> {
 
-    private final List<Evento> eventos;
+    public interface OnEventoClickListener {
+        void onEditEvento(Evento evento);
+        void onDeleteEvento(Evento evento);
+    }
 
-    public EventoAdapter(List<Evento> eventos) {
+    private final List<Evento> eventos;
+    private final OnEventoClickListener listener;
+
+    public EventoAdapter(List<Evento> eventos, OnEventoClickListener listener) {
         this.eventos = eventos;
+        this.listener = listener;
     }
 
     @NonNull
@@ -68,6 +75,9 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHold
 
             context.startActivity(intent);
         });
+
+        holder.editEventoButton.setOnClickListener(v -> listener.onEditEvento(evento));
+        holder.deleteEventoButton.setOnClickListener(v -> listener.onDeleteEvento(evento));
     }
 
     @Override
@@ -81,6 +91,8 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHold
         TextView eventoCategoriaText;
         TextView eventoFechaText;
         TextView eventoRecintoText;
+        Button editEventoButton;
+        Button deleteEventoButton;
 
         public EventoHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +101,8 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoHold
             eventoCategoriaText = itemView.findViewById(R.id.eventoCategoriaText);
             eventoFechaText = itemView.findViewById(R.id.eventoFechaText);
             eventoRecintoText = itemView.findViewById(R.id.eventoRecintoText);
+            editEventoButton = itemView.findViewById(R.id.editEventoButton);
+            deleteEventoButton = itemView.findViewById(R.id.deleteEventoButton);
         }
     }
 }

@@ -51,6 +51,20 @@
             android:textSize="15sp"
             android:layout_marginTop="4dp"/>
 
+        <Button
+            android:id="@+id/editEventoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_event"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/deleteEventoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

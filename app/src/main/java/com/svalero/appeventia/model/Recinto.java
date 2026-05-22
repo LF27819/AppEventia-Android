@@ -12,6 +12,7 @@ public class Recinto {
     public Recinto() {
     }
 
+
     public long getId() {
         return id;
     }
@@ -20,6 +21,10 @@ public class Recinto {
         return nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
     public String getDireccion() {
         return direccion;
     }
