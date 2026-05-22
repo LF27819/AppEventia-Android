@@ -40,7 +40,14 @@ public class FavoritesActivity extends AppCompatActivity implements FavoritesCon
         favoritoAdapter = new FavoritoAdapter(
                 favoritos,
                 this,
-                favorito -> presenter.eliminarFavorito(favorito)
+                favorito -> new androidx.appcompat.app.AlertDialog.Builder(FavoritesActivity.this)
+                        .setTitle("Eliminar favorito")
+                        .setMessage("¿Seguro que quieres eliminar este favorito?")
+                        .setPositiveButton("Eliminar", (dialog, which) -> {
+                            presenter.eliminarFavorito(favorito);
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show()
         );
 
         favoritesRecyclerView.setAdapter(favoritoAdapter);

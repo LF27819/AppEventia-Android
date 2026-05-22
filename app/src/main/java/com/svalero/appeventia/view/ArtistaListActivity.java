@@ -60,10 +60,16 @@ public class ArtistaListActivity extends AppCompatActivity implements ArtistaLis
                 startActivity(intent);
             }
 
-
             @Override
             public void eliminarArtista(Artista artista) {
-                presenter.eliminarArtista(artista.getId());
+                new androidx.appcompat.app.AlertDialog.Builder(ArtistaListActivity.this)
+                        .setTitle("Eliminar artista")
+                        .setMessage("¿Seguro que quieres eliminar a " + artista.getNombreArtistico() + "?")
+                        .setPositiveButton("Eliminar", (dialog, which) -> {
+                            presenter.eliminarArtista(artista.getId());
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show();
             }
         });
 

@@ -62,8 +62,16 @@ public class EventoListActivity extends AppCompatActivity implements EventoListC
 
             @Override
             public void onDeleteEvento(Evento evento) {
-                presenter.eliminarEvento(evento.getId());
+                new androidx.appcompat.app.AlertDialog.Builder(EventoListActivity.this)
+                        .setTitle("Eliminar evento")
+                        .setMessage("¿Seguro que quieres eliminar " + evento.getNombre() + "?")
+                        .setPositiveButton("Eliminar", (dialog, which) -> {
+                            presenter.eliminarEvento(evento.getId());
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show();
             }
+
         });
 
         eventosRecyclerView.setAdapter(eventoAdapter);
