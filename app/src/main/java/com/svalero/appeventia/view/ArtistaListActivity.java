@@ -18,6 +18,10 @@ import com.svalero.appeventia.presenter.ArtistaListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
 public class ArtistaListActivity extends AppCompatActivity implements ArtistaListContract.View {
 
     private List<Artista> artistas;
@@ -56,6 +60,7 @@ public class ArtistaListActivity extends AppCompatActivity implements ArtistaLis
                 startActivity(intent);
             }
 
+
             @Override
             public void eliminarArtista(Artista artista) {
                 presenter.eliminarArtista(artista.getId());
@@ -67,6 +72,23 @@ public class ArtistaListActivity extends AppCompatActivity implements ArtistaLis
         addArtistaButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ArtistaFormActivity.class);
             startActivity(intent);
+        });
+
+        EditText searchArtistasEditText = findViewById(R.id.searchArtistasEditText);
+
+        searchArtistasEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                presenter.filtrarArtistas(text.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
         });
     }
 

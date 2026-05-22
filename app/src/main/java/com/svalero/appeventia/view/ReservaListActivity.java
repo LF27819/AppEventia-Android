@@ -16,6 +16,10 @@ import com.svalero.appeventia.presenter.ReservaListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
 public class ReservaListActivity extends AppCompatActivity implements ReservaListContract.View {
 
     private List<Reserva> reservas;
@@ -41,6 +45,23 @@ public class ReservaListActivity extends AppCompatActivity implements ReservaLis
         reservasRecyclerView.setAdapter(reservaAdapter);
 
         presenter.cargarReservas();
+
+        EditText searchReservasEditText = findViewById(R.id.searchReservasEditText);
+
+        searchReservasEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                presenter.filtrarReservas(text.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
     @Override

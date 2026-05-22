@@ -14,6 +14,7 @@ public interface ArtistaListContract {
 
     interface Presenter {
         void cargarArtistas();
+        void filtrarArtistas(String texto);
         void eliminarArtista(long id);
     }
 }

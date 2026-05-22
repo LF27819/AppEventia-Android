@@ -19,6 +19,14 @@
         android:textColor="#212121"
         android:layout_marginBottom="16dp"/>
 
+    <EditText
+        android:id="@+id/searchReservasEditText"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Buscar reservas"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reservasRecyclerView"
         android:layout_width="match_parent"

@@ -13,5 +13,6 @@ public interface ReservaListContract {
 
     interface Presenter {
         void cargarReservas();
+        void filtrarReservas(String texto);
     }
 }
