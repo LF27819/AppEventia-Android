@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="100dp"
@@ -23,121 +24,178 @@
             android:textColor="#212121"
             android:layout_marginBottom="18dp"/>
 
-        <EditText
-            android:id="@+id/nombreEventoInput"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_name_hint"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/descripcionEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_description_hint"
-            android:inputType="textMultiLine"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/fechaEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descripcionEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_date_hint"
-            android:inputType="date"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/horaEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fechaEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_time_hint"
-            android:inputType="time"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/precioEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/horaEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="time"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_price_hint"
-            android:inputType="numberDecimal"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/aforoEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/precioEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/event_capacity_hint"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="10dp"/>
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/entradasEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/aforoEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="@string/event_available_tickets_hint"
-            android:importantForAutofill="no"
-            android:inputType="number" />
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/categoriaEventoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/entradasEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
             android:hint="@string/event_category_hint"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:layout_marginBottom="14dp"/>
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/categoriaEventoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/artist_label"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="6dp"/>
 
         <Spinner
             android:id="@+id/artistaSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"/>
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/venue_label"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="6dp"/>
 
         <Spinner
             android:id="@+id/recintoSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"/>
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF"/>
 
         <CheckBox
             android:id="@+id/presencialCheckBox"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/event_in_person" />
+            android:text="@string/event_in_person"
+            android:layout_marginBottom="6dp"/>
 
         <CheckBox
             android:id="@+id/canceladoCheckBox"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/event_cancelled" />
+            android:text="@string/event_cancelled"
+            android:layout_marginBottom="20dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/saveEventoButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save_event"/>
+            android:layout_height="56dp"
+            android:text="@string/save_event"
+            app:cornerRadius="18dp"/>
 
     </LinearLayout>
+
 </ScrollView>

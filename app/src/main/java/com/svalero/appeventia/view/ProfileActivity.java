@@ -2,7 +2,7 @@ package com.svalero.appeventia.view;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
+import com.google.android.material.materialswitch.MaterialSwitch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
         presenter = new ProfilePresenter(this);
 
-        CheckBox notificationsCheckBox = findViewById(R.id.notificationsCheckBox);
+        MaterialSwitch notificationsCheckBox = findViewById(R.id.notificationsCheckBox);
         Button saveProfileButton = findViewById(R.id.saveProfileButton);
 
         saveProfileButton.setOnClickListener(v -> {

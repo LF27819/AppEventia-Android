@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="100dp"
@@ -23,47 +24,89 @@
             android:textColor="#212121"
             android:layout_marginBottom="18dp"/>
 
-        <EditText
-            android:id="@+id/nombreArtisticoInput"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Artistic name"
-            android:inputType="text" />
+            android:layout_marginBottom="10dp"
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/nombreRealInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreArtisticoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Real name"
-            android:inputType="text" />
+            android:layout_marginBottom="10dp"
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/generoMusicalInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreRealInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Musical genre"
-            android:inputType="text" />
+            android:layout_marginBottom="10dp"
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/fechaNacimientoInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/generoMusicalInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Birth date yyyy-MM-dd"
-            android:inputType="date" />
+            android:layout_marginBottom="10dp"
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/cacheInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fechaNacimientoInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Cache"
-            android:inputType="numberDecimal" />
+            android:layout_marginBottom="10dp"
+            app:boxBackgroundMode="outline">
 
-        <EditText
-            android:id="@+id/eventosRealizadosInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cacheInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:hint="Events performed"
-            android:inputType="number" />
+            android:layout_marginBottom="14dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eventosRealizadosInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/activoCheckbox"
@@ -71,12 +114,13 @@
             android:layout_height="48dp"
             android:text="Active" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/guardarArtistaButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
-            android:text="Save artist" />
+            android:text="Save artist"
+            app:cornerRadius="18dp"/>
 
     </LinearLayout>
 

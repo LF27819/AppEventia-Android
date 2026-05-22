@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,21 +20,33 @@
         android:textColor="#212121"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/searchArtistasEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchArtistasInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="Buscar artistas"
-        android:padding="12dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"/>
+        android:hint="Buscar artistas"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="18dp"
+        app:boxCornerRadiusTopEnd="18dp"
+        app:boxCornerRadiusBottomStart="18dp"
+        app:boxCornerRadiusBottomEnd="18dp">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchArtistasEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/addArtistaButton"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="16dp"
-        android:text="New artist" />
+        android:text="New artist"
+        app:cornerRadius="18dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artistasRecyclerView"
